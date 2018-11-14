@@ -1,13 +1,13 @@
-const Sequelize = require('sequelize');
-const connection = require('./');
+const Sequelize = require("sequelize");
+const connection = require("./");
 
 const Comments = connection.define(
-  'comment',
+  "comment",
   {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
+      primaryKey: true
     },
     user: Sequelize.STRING,
     prodRating: Sequelize.INTEGER,
@@ -23,20 +23,20 @@ const Comments = connection.define(
     quality: Sequelize.INTEGER,
     response: Sequelize.TEXT,
     prodId: Sequelize.INTEGER,
-    header: Sequelize.TEXT,
+    header: Sequelize.TEXT
   },
   {
-    createdAt: false,
-  },
+    createdAt: false
+  }
 );
 
 connection
   .sync()
   .then(() => {
-    console.log('MySQL connection synced');
+    console.log("postgres connection synced");
   })
-  .catch((err) => {
-    console.error('Synced failed: ', err);
+  .catch(err => {
+    console.error("Synced failed: ", err);
   });
 
 module.exports = Comments;

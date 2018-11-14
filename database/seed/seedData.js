@@ -1,9 +1,9 @@
-const faker = require('faker');
-const Comments = require('../models');
+const faker = require("faker");
+const Comments = require("../models");
 
 const fakeData = [];
 
-for (let j = 1; j <= 100; j++) {
+for (let j = 1; j <= 1000000; j++) {
   const randomNumber = Math.floor(Math.random() * 40 + 10);
   for (let i = 0; i < randomNumber; i++) {
     const response = Math.random() > 0.5 ? null : faker.lorem.sentence();
@@ -23,12 +23,14 @@ for (let j = 1; j <= 100; j++) {
       quality: faker.random.number({ min: 1, max: 4 }),
       response,
       prodId: j,
-      header,
+      header
     };
     fakeData.push(object);
   }
 }
 
 Comments.sync({ force: false }).then(() => {
-  Comments.bulkCreate(fakeData).then(() => console.log('fake comments seeded!'));
+  Comments.bulkCreate(fakeData).then(() =>
+    console.log("fake comments seeded!")
+  );
 });

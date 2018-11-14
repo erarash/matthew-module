@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-require('dotenv').config();
+const Sequelize = require("sequelize");
+require("dotenv").config();
 
 const connection = new Sequelize(
   process.env.DB_NAME,
@@ -7,17 +7,17 @@ const connection = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.HOSTNAME,
-    dialect: 'mysql',
-  },
+    dialect: "postgres"
+  }
 );
 
 connection
   .authenticate()
   .then(() => {
-    console.log('MySQL connection has been established successfully');
+    console.log("postgres connection has been established successfully");
   })
-  .catch((err) => {
-    console.error('Unable to connect to database: ', err);
+  .catch(err => {
+    console.error("Unable to connect to database: ", err);
   });
 
 module.exports = connection;
