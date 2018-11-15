@@ -16,7 +16,7 @@
     "test": "jest",
     "start": "nodemon ./server",
     "build": "webpack -w",
-    "seed": "node ./database/seed/seedData"
+    "seed": "node ./database/seed/seedData.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "css-loader": "^1.0.1",
+    "csv-writer": "^1.2.0",
     "dotenv": "^6.1.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -47,6 +48,7 @@
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "faker": "^4.1.0",
+    "fs": "0.0.1-security",
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.4",
     "moment": "^2.22.2",

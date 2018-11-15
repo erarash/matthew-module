@@ -26,7 +26,8 @@ const Comments = connection.define(
     header: Sequelize.TEXT
   },
   {
-    createdAt: false
+    createdAt: false,
+    updatedAt: false
   }
 );
 

@@ -1,0 +1,23 @@
+\copy comments("user", "prodRating", "yesRating", "noRating", date, body, verified, recommend, size, width, comfort, quality, response, "prodId", header) FROM '/home/arash/HRLA25/SDC/matthew-module/database/seed/seededData.csv' WITH DELIMITER ',' CSV HEADER
+
+
+CREATE TABLE comments(
+ id serial PRIMARY KEY,
+ "user" character VARYING(254) NOT NULL,
+ "prodRating" INTEGER,
+ "yesRating" INTEGER NOT NULL,
+ "noRating" INTEGER NOT NULL,
+ "date" DATE NOT NULL,
+ "body" TEXT NOT NULL,
+ "verified" BOOLEAN NOT NULL,
+ "recommend" BOOLEAN NOT NULL,
+ "size" INTEGER NOT NULL,
+ "width" INTEGER NOT NULL,
+ "comfort" INTEGER NOT NULL,
+ "quality" INTEGER NOT NULL,
+ "response" TEXT,
+ "prodId" INTEGER NOT NULL,
+ "header" TEXT
+);
+
+POSTGRES 3min for 12 million
