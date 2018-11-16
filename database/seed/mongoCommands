@@ -1,0 +1,20 @@
+db.createCollection('revs')
+{
+  'user': String,
+  'prodRating': Number,
+  'yesRating': Number,
+  'noRating': Number,
+  'date': Date,
+  'body': String,
+  'verified': Boolean,
+  'recommend': Boolean,
+  'size': Number,
+  'width': Number,
+  'comfort': Number,
+  'quality': Number,
+  'response': String,
+  'prodId': Number,
+  'header': String
+}
+
+mongoimport -d mattrev -c rev --type csv --file '/home/arash/HRLA25/SDC/matthew-module/database/seed/seededData.csv' --headerline

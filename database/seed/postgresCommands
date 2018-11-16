@@ -20,4 +20,4 @@ CREATE TABLE comments(
  "header" TEXT
 );
 
-POSTGRES 3min for 12 million
+POSTGRES: 3min for 12 million
