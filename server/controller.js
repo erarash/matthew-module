@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Comments = require("../database/index.js");
+const Sequelize = require("sequelize");
+const Comments = require("../database/models");
 
 const { Op } = Sequelize;
 

@@ -1,10 +1,10 @@
 const faker = require("faker");
-const Comments = require("../models");
+// const Comments = require("../models");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
-Comments.sync({ force: false }).then(() => {
-  console.log("table created");
-});
+// Comments.sync({ force: false }).then(() => {
+//   console.log("table created");
+// });
 
 const csvWriter = createCsvWriter({
   path: "./database/seed/seededData.csv",
@@ -30,9 +30,8 @@ const csvWriter = createCsvWriter({
 
 let generateFake = function() {
   let fakeData = [];
-  for (let j = 1; j <= 1000; j++) {
-    const randomNumber = Math.floor(Math.random() * 40 + 10);
-    for (let i = 0; i < randomNumber; i++) {
+  for (let j = 241; j <= 250; j++) {
+    for (let i = 0; i < 10000; i++) {
       const response = Math.random() > 0.5 ? null : faker.lorem.sentence();
       const header = Math.random() > 0.5 ? null : faker.lorem.sentence();
       const object = {
@@ -68,12 +67,12 @@ function writer() {
 }
 let seedThis = function() {
   console.log("seeding");
-  for (let i = 0; i <= 10; i++) {
+  for (let i = 0; i <= 1; i++) {
     writer();
   }
 };
 let pls = function() {
-  for (let i = 0; i <= 2; i++) {
+  for (let i = 0; i <= 1; i++) {
     seedThis();
   }
 };
