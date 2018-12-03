@@ -1,4 +1,4 @@
-\copy comments("user", "prodRating", "yesRating", "noRating", date, body, verified, recommend, size, width, comfort, quality, response, "prodId", header) FROM '/home/arash/HRLA25/SDC/matthew-module/database/seed/seededData.csv' WITH DELIMITER ',' CSV HEADER
+\copy comments("user", "prodRating", "yesRating", "noRating", date, body, verified, recommend, size, width, comfort, quality, response, "prodId", header) FROM '/home/arash/HRLA25/SDC/matthew-module/database/seed/seededData.csv' WITH DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE comments(

@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  matthew-module:
+    image: matthew-module
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 2000:2000
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect index.js

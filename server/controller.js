@@ -6,7 +6,7 @@ const { Op } = Sequelize;
 module.exports = {
   get: (req, res) => {
     const { id } = req.params;
-    Comments.findAll({ where: { prodId: id } })
+    Comments.findAll({ where: { prodId: id }, limit: 500 })
       .then(result => {
         res.status(200).send(result);
       })
@@ -29,7 +29,6 @@ module.exports = {
     }
 
     if (filters !== "[]") {
-      console.log(filters);
       Comments.findAll({
         order: [[`${field}`, "DESC"]],
         limit: parseInt(limit, 10),

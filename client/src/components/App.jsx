@@ -1,11 +1,11 @@
-import React from 'react';
-import OverallRating from './OverallRating';
-import Rating from './Rating';
-import Specs from './Specs';
-import Sort from './Sort';
-import Footer from './Footer';
-import styles from '../css/App.css';
-import axios from 'axios';
+import React from "react";
+import OverallRating from "./OverallRating";
+import Rating from "./Rating";
+import Specs from "./Specs";
+import Sort from "./Sort";
+import Footer from "./Footer";
+import styles from "../css/App.css";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,55 +15,70 @@ class App extends React.Component {
       data: [],
       percent: 0,
       overallRating: 0,
-      view: 'relevant',
+      view: "relevant",
       limit: 2,
       comments: [],
-      filters: [],
+      filters: []
     };
     this.extractInfo = this.extractInfo.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleLoadClick = this.handleLoadClick.bind(this);
     this.handleRateClick = this.handleRateClick.bind(this);
     this.handleRemoveFilterClick = this.handleRemoveFilterClick.bind(this);
-    axios.defaults.baseURL = 'http://' + process.env.HOSTNAME + ':' + process.env.PORT;
+    // axios.defaults.baseURL =
+    //   "http://" + process.env.HOSTNAME + ":" + process.env.PORT;
   }
 
   componentDidMount() {
     this.fetch(this.state.prodId);
-    this.fetchComments(this.state.view, this.state.limit, this.state.filters, this.state.prodId);
+    this.fetchComments(
+      this.state.view,
+      this.state.limit,
+      this.state.filters,
+      this.state.prodId
+    );
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.limit !== prevState.limit || this.state.view !== prevState.view) {
-      this.fetchComments(this.state.view, this.state.limit, this.state.filters, this.state.prodId);
+    if (
+      this.state.limit !== prevState.limit ||
+      this.state.view !== prevState.view
+    ) {
+      this.fetchComments(
+        this.state.view,
+        this.state.limit,
+        this.state.filters,
+        this.state.prodId
+      );
     }
   }
 
   fetch(prodId) {
     axios
-      .get(`/api/prodId:${prodId}`)
+      .get(`http://3.17.68.190:2000/api/prodId:${prodId}`)
       .then(result => {
-        console.log(result);
         this.setState({
-          data: result.data,
+          data: result.data
         });
         this.extractInfo();
       })
       .catch(err => {
-        console.error('Fetch error, ', err);
+        console.error("Fetch error, ", err);
       });
   }
 
   fetchComments(type, limit, filters, prodId) {
     filters = JSON.stringify(filters);
     axios
-      .get(`/api/prodId:${prodId}/${type}/limit=${limit}?filters=${filters}`)
+      .get(
+        `http://3.17.68.190:2000/api/prodId:${prodId}/${type}/limit=${limit}?filters=${filters}`
+      )
       .then(result => {
         this.setState({
-          comments: result.data,
+          comments: result.data
         });
       })
       .catch(err => {
-        console.error('Fetch error, ', err);
+        console.error("Fetch error, ", err);
       });
   }
 
@@ -79,18 +94,18 @@ class App extends React.Component {
     });
     this.setState({
       percent: Math.round((percent / length) * 100),
-      overallRating: (overallRating / length).toFixed(1),
+      overallRating: (overallRating / length).toFixed(1)
     });
   }
 
   ratingToStarTranslation(rating) {
-    let arr = Array(5).fill('0%');
+    let arr = Array(5).fill("0%");
     let decimal = 1 - (Math.ceil(rating) - rating).toFixed(1);
     for (let i = 0; i < Math.ceil(rating); i++) {
       if (i === Math.ceil(rating) - 1) {
-        arr[i] = (decimal * 100).toString() + '%';
+        arr[i] = (decimal * 100).toString() + "%";
       } else {
-        arr[i] = '100%';
+        arr[i] = "100%";
       }
     }
     return arr;
@@ -98,8 +113,8 @@ class App extends React.Component {
 
   handleClick(e) {
     let view = e.target.textContent.toLowerCase();
-    if (view === 'helpful') {
-      view = 'helpfulButton';
+    if (view === "helpful") {
+      view = "helpfulButton";
     }
     this.setState({
       view
@@ -110,7 +125,7 @@ class App extends React.Component {
     if (this.state.limit <= this.state.data.length) {
       let addition = this.state.limit + 5;
       this.setState({
-        limit: addition,
+        limit: addition
       });
     }
   }
@@ -124,39 +139,39 @@ class App extends React.Component {
     }
     this.setState(
       {
-        filters: currentFilters,
+        filters: currentFilters
       },
       () => {
         this.fetchComments(
           this.state.view,
           this.state.limit,
           this.state.filters,
-          this.state.prodId,
+          this.state.prodId
         );
-      },
+      }
     );
   }
 
   handleRemoveFilterClick() {
     this.setState(
       {
-        filters: [],
+        filters: []
       },
       () => {
         this.fetchComments(
           this.state.view,
           this.state.limit,
           this.state.filters,
-          this.state.prodId,
+          this.state.prodId
         );
-      },
+      }
     );
   }
 
   render() {
     let section;
 
-    if (this.props.section === 'reviews') {
+    if (this.props.section === "reviews") {
       section = (
         <div className={styles.main}>
           <div className={styles.RatingReviews}>
@@ -169,7 +184,9 @@ class App extends React.Component {
               />
               <div className={styles.percentage}>
                 <div className={styles.percent}>{this.state.percent}%</div>
-                <div className={styles.customersRec}>of customers recommend this product</div>
+                <div className={styles.customersRec}>
+                  of customers recommend this product
+                </div>
               </div>
             </div>
             <div className={styles.container3}>
@@ -194,7 +211,7 @@ class App extends React.Component {
           </div>
         </div>
       );
-    } else if (this.props.section === 'footer') {
+    } else if (this.props.section === "footer") {
       section = <Footer />;
     }
     return section;

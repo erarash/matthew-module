@@ -1,0 +1,11 @@
+config:
+  target: "http://localhost:2000"
+  phases:
+    - duration: 10
+      arrivalRate: 1000
+  # processor: "./artilleryUtilities.js"
+
+scenarios:
+  - flow:
+      - get:
+          url: "/api/prodId:245"
